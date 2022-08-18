@@ -1,0 +1,21 @@
+@import "normalize.css";
+*{
+  padding:0;
+  margin:0;
+}
+
+/*取消input的上下箭头*/
+   input::-webkit-inner-spin-button {
+     -webkit-appearance: none !important;
+
+   }
+
+input::-webkit-outer-spin-button{
+  -webkit-appearance: none !important;
+
+}
+
+input[type="number"]{
+  -moz-appearance: textfield;
+
+}
