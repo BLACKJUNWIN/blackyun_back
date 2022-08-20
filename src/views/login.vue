@@ -47,7 +47,7 @@ export default {
       let res = await login(this.user);
       this.$store.commit("tip", res);
       if (res.code === "200") {
-        sessionStorage.setItem("token", res.data);
+        sessionStorage.setItem("token", res.data.token);
         sessionStorage.setItem("user", this.user.name);
         await this.$router.push("/home/user");
       }

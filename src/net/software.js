@@ -28,3 +28,11 @@ export function selectSoftware(data){
   })
 }
 
+export function net_verify(data){
+  return request({
+    url:"/software/verify",
+    method:"post",
+    data
+  })
+}
+

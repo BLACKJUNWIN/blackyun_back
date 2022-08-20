@@ -31,9 +31,9 @@
       <el-table-column
         prop="avatar"
         label="头像"
-        width="auto">
+        width="100">
         <template slot-scope="scope">
-          <img :src="scope.row.avatar" width="80px"/>
+          <img :src="scope.row.avatar" width="80px" style="border-radius: 50%" alt="avatar"/>
         </template>
       </el-table-column>
       <el-table-column
@@ -126,6 +126,7 @@
               <img :src="editParam.avatar" style="width: 80px;" alt="头像"/>
             </div>
             <el-upload
+              ref="upload"
               v-if="!isUpload"
               class="upload-demo"
               action="#"
@@ -137,7 +138,6 @@
               <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
           </div>
-
         </el-form-item>
         <el-form-item label="权限">
           <el-select v-model="editParam.role" clearable placeholder="请选择">
@@ -254,15 +254,21 @@ export default {
       this.list();
     },
     async getFile(file){
-      let data = new FormData();
-      data.append("file",file.raw);
-      data.append("category","avatar");
-      data.append("md5","1");
-      let res=await uploadFile(data);
-      if(res.code==="200"){
-        this.editParam.avatar=res.data.path;
-        this.isUpload=true;
+      let res={
+        code:"500",
+        message:"文件超过500kb,请重新选择"
       }
+      if(file.raw.size<1024*1024){
+        let data = new FormData();
+        data.append("file",file.raw);
+        data.append("category","icon");
+        res=await uploadFile(data);
+        if(res.code==="200"){
+          this.editParam.avatar=res.data.path;
+          this.isUpload=true;
+        }
+      }
+      this.$refs.upload.clearFiles();
       this.$store.commit("tip",res);
     },
     setParam(res){
