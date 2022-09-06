@@ -3,7 +3,6 @@
     <div style="width:100%;height:80px;background-color: #e3f2fd;line-height: 80px;display: flex;justify-content: space-between">
       <strong style="font-size:21px;margin-left: 20px">黑盘后台管理系统</strong>
       <div style="margin-right: 20px;">
-        <a href="https://blackjun.cn/book" style="text-decoration: none;color: white"><strong style="padding:5px 10px;background-color: #67c23a">前往书城</strong></a>
         <span style="font-size:20px">
                 欢迎您的到来:&nbsp<strong style="background-color: #17a2b8;color:white;padding:5px 10px;border-radius: .5em">{{user}}</strong>
         </span>
